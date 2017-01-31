@@ -42,11 +42,12 @@ class EventFilter(object):
 
 class JSONOutputFilter(EventFilter):
     """ Added as a filter will format the event into JSON """
-    def __init__(self):
-        EventFilter.__init__(self)
+    def __init__(self, output):
+        self._output = output
 
     def process(self, event):
-        return json.dumps(event, ensure_ascii=False)
+        print >> self._output, json.dumps(event, ensure_ascii=False, indent=4)
+        return event
 
 
 class PrettyPrintFilter(EventFilter):
@@ -170,11 +171,11 @@ def main():
     archive = mpyq.MPQArchive(args.replay_file)
     
     filters = []
-    if not args.quiet:
-        filters.insert(0, PrettyPrintFilter(sys.stdout))
 
     if args.json:
-        filters.insert(0, JSONOutputFilter())
+        filters.insert(0, JSONOutputFilter(sys.stdout))
+    elif not args.quiet:
+        filters.insert(0, PrettyPrintFilter(sys.stdout))
 
     if args.types:
         filters.insert(0, TypeDumpFilter())
