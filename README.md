@@ -19,6 +19,12 @@ s2protocol can be used as a base-build-specific library to decode binary blobs, 
 Note that s2protocol does not expose game balance information or provide any kind of high level analysis of replays; it's meant
 to be just the first tool in the chain for your data mining application.
 
+# Simple Example Usage
+
+The following command will invoke the command line to parse and output in JSON format the contents of a test replay uploaded to s2replaystats.com.
+
+python -m s2protocol.s2_cli --all tests/s2replaystatsdata/2018-11-29_Z_iaguz_VS_P_Luneth.SC2Replay
+
 # Supported Versions
 
 s2protocol supports all StarCraft II replay files that were written with retail versions of the game. The current plan is to support all future publicly released versions, including public betas.
