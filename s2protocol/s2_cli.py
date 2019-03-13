@@ -15,7 +15,7 @@ from mpyq import MPQArchive
 from .versions import build, list_all, latest
 from .diff import diff
 from .compat import get_stream
-import s2protocol.attributes as _attr
+from . import attributes as _attr
 
 __all__ = (
     'EventFilter', 'JSONOutputFilter', 'NDJSONOutputFilter',
